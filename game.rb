@@ -1,9 +1,13 @@
+require "./player.rb"
+
 class Game 
   def initialize
     # Welcome message 
     puts "Welcome to mastermind"
 
+    @player = Player.new 
     @range_choice = [1, 2, 3, 4, 5, 6]
+
     # generate the code to break
     @code = @range_choice.sample(4)
     
@@ -15,10 +19,11 @@ class Game
     @correct_input = false
     until @correct_input 
       # Ask player to guess the code
-      puts "Your guess code must only have 4 digits included in [1, 2, 3, 4, 5, 6]"
-      puts " "
-      puts "Enter your guess code: "
-      @guess_code = gets.chomp.to_i.digits.reverse
+      @guess_code = @player.guess_code
+      # puts "Your guess code must only have 4 digits included in [1, 2, 3, 4, 5, 6]"
+      # puts " "
+      # puts "Enter your guess code: "
+      # @guess_code = gets.chomp.to_i.digits.reverse
   
       # check if the guess code meet the criterion
       if @guess_code == @guess_code.intersection(@range_choice) && @guess_code.length == 4
