@@ -1,4 +1,5 @@
 require "./player.rb"
+require "./computer.rb"
 
 class Game 
   def initialize
@@ -6,10 +7,11 @@ class Game
     puts "Welcome to mastermind"
 
     @player = Player.new 
+    @computer = Computer.new
     @range_choice = [1, 2, 3, 4, 5, 6]
 
     # generate the code to break
-    @code = @range_choice.sample(4)
+    @code = @computer.generate_code
     
   end
 
