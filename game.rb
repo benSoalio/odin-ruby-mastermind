@@ -4,15 +4,27 @@ require "./computer.rb"
 class Game 
   def initialize
     # Welcome message 
-    puts "Welcome to mastermind"
+    puts "Welcome to mastermind" 
+
+    @correct_input = false
+    until @correct_input
+      puts "Press 1 to be Code maker or 2 to be Code breaker: "
+      @player_choice = gets.chomp.to_i
+      
+      @correct_input = true if @player_choice == 1 || @player_choice == 2
+    end
+
 
     @player = Player.new 
     @computer = Computer.new
     @range_choice = [1, 2, 3, 4, 5, 6]
 
     # generate the code to break
-    @code = @computer.generate_code
-    
+    if @player_choice == 1
+      @code = @player.generate_code
+    else
+      @code = @computer.generate_code
+    end
   end
 
   # Play function 
@@ -20,13 +32,13 @@ class Game
     @result = []
     @correct_input = false
     until @correct_input 
-      # Ask player to guess the code
+      # Ask to guess the code
+      if @player_choice == 1
+      @guess_code = @computer.guess_code
+      else
       @guess_code = @player.guess_code
-      # puts "Your guess code must only have 4 digits included in [1, 2, 3, 4, 5, 6]"
-      # puts " "
-      # puts "Enter your guess code: "
-      # @guess_code = gets.chomp.to_i.digits.reverse
-  
+      end
+      
       # check if the guess code meet the criterion
       if @guess_code == @guess_code.intersection(@range_choice) && @guess_code.length == 4
         @correct_input = true 
