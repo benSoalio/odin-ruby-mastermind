@@ -1,11 +1,12 @@
 require "./player.rb"
 require "./computer.rb"
+require "./colors.rb"
 
 class Game 
   def initialize
     # Welcome message 
     puts "Welcome to mastermind" 
-
+    
     @correct_input = false
     until @correct_input
       puts "Press 1 to be Code maker or 2 to be Code breaker: "
@@ -24,6 +25,21 @@ class Game
       @code = @player.generate_code
     else
       @code = @computer.generate_code
+    end
+  end
+
+  # Print Color funtion
+  def print_color(num)
+    case num
+    when 8
+      print "   ".bg_green
+      print "\n"
+    when 9
+      print "   ".bg_red
+      print "\n"
+    when 0
+      print "   "
+      print "\n"
     end
   end
 
@@ -60,7 +76,12 @@ class Game
     end
 
     # print the result with the color peg
-    puts "#{@result}"
+    for i in 0..3
+      print_color(@result[i])
+      # print "#{@result[i]} ".red
+    end
+    # puts "#{@result}"
+    # puts "    ".bg_red
   end
   
 
