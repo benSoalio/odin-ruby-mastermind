@@ -1,9 +1,6 @@
 class Player 
   def initialize
     # Initialize the player with 
-    puts "Enter your name: "
-    @name = gets.chomp
-
     @range_choice = [1, 2, 3, 4, 5, 6]
   end
 

@@ -5,11 +5,20 @@ require "./colors.rb"
 class Game 
   def initialize
     # Welcome message 
-    puts "Welcome to mastermind" 
+
+    puts <<-MESSAGE
+      Welcome to Mastermind by Bsoalio
+
+      **Each red color means one the guessed digit is correct, but is in the wrong place
+
+      **Each green color means one the guessed digit is correct and in the right place
+
+      MESSAGE
     
     @correct_input = false
     until @correct_input
       puts "Press 1 to be Code maker or 2 to be Code breaker: "
+      puts " "
       @player_choice = gets.chomp.to_i
       
       @correct_input = true if @player_choice == 1 || @player_choice == 2
@@ -78,10 +87,7 @@ class Game
     # print the result with the color peg
     for i in 0..3
       print_color(@result[i])
-      # print "#{@result[i]} ".red
     end
-    # puts "#{@result}"
-    # puts "    ".bg_red
   end
   
 
@@ -95,5 +101,4 @@ class Game
    puts "Congratulations, you broke the code."
    return true
   end
-
 end
