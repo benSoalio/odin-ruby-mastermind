@@ -98,7 +98,7 @@ class Game
      break
     end
    end
-   puts "Congratulations, you broke the code."
+   puts "Congratulations, " + "#{@player_choice == 1 ? 'Computer' : 'you'} "  + "broke the code"
    return true
   end
 end
